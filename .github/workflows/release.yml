@@ -30,10 +30,13 @@ jobs:
           release_branches: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Generate Release Body
+        run: bash tools/release.sh
+
       - name: Create a GitHub Release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: ${{ steps.tag_version.outputs.new_tag }}
-          bodyFile: tools/release_template.md
+          bodyFile: tools/release.md
           artifacts: "dist/**"
