@@ -12,12 +12,17 @@ echo "" >> ${tools_root}/release.md
 echo "# File Hashes" >> ${tools_root}/release.md
 
 # Generate table
-echo "| File | md5 hash |" >> ${tools_root}/release.md
-echo "|------|----------|" >> ${tools_root}/release.md
+echo "| File | Firmware name | Firmware version | md5 hash |" >> ${tools_root}/release.md
+echo "|------|---------------|------------------|----------|" >> ${tools_root}/release.md
 
-for file in "$tools_root/../dist/"*
+for file in "$tools_root/../temp/"*
 do
     if [ -f "$file" ]; then
-       echo "| $(basename -- $file) | $(md5sum "$file" | cut -d ' ' -f 1) |" >> ${tools_root}/release.md
+      app_name=$(sed -n '1p' "$file")
+      app_hash=$(sed -n '6p' "$file")
+      firmware_version=$(sed -n '2p' "$file")
+      firmware_name=$(sed -n '3p' "$file")
+
+      echo "| ${app_name} | ${firmware_name} | ${firmware_version} | ${app_hash} |"
     fi
 done

@@ -4,6 +4,7 @@ application_name="flipper_hello_app"
 repo_root=$(dirname $0)/..
 
 mkdir -p ${repo_root}/dist
+mkdir -p ${repo_root}/temp
 
 # Fetch all firmwares submodules
 git submodule update --init --recursive
@@ -67,3 +68,11 @@ else
 fi
 
 cp "build/${firmware_path}/.extapps/${application_name}.fap" "../dist/${application_name}_${app_suffix}.fap"
+
+# Write Information About Build
+echo "${application_name}_${app_suffix}.fap" >> ../temp/${application_name}_${app_suffix}.txt
+echo "${api_version}" >> ../temp/${application_name}_${app_suffix}.txt
+echo "${build_mode}" >> ../temp/${application_name}_${app_suffix}.txt
+echo "${firmware_path}" >> ../temp/${application_name}_${app_suffix}.txt
+echo "${application_name}" >> ../temp/${application_name}_${app_suffix}.txt
+echo "$(md5sum "../dist/${application_name}_${app_suffix}.fap" | cut -d ' ' -f 1)" >> ../temp/${application_name}_${app_suffix}.txt
