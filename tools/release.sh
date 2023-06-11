@@ -2,6 +2,9 @@
 
 tools_root=$(dirname $0)
 
+# Include functions
+source ${tools_root}/_functions.sh
+
 cp ${tools_root}/release_template.md ${tools_root}/release.md
 
 # Add New Lines
@@ -23,6 +26,6 @@ do
       firmware_version=$(sed -n '2p' "$file")
       firmware_name=$(sed -n '3p' "$file")
 
-      echo "| ${app_name} | ${firmware_name} | ${firmware_version} | ${app_hash} |"
+      echo "| ${app_name} | $(firmware_link_by_name $firmware_name) | ${firmware_version} | ${app_hash} |" >> ${tools_root}/release.md
     fi
 done
