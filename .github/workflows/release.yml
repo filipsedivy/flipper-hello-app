@@ -23,13 +23,28 @@ jobs:
           bash tools/build.sh -f rogue-master
           bash tools/build.sh
 
+      - name: Count Hashes
+        id: count_hashes
+        run: |
+          bash tools/hash.sh
+          input_file = 
+
+      - name: Read Hashes
+        id: read_hashes
+        run: |
+          input_file="hashes/flipper_hello_app.txt"
+          while read line
+          do
+            file_text=$line
+          done < "$input_file"
+          echo ::set-output name=hashes::$file_text
+
       - name: Bump Version and Push Tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.1
         with:
           release_branches: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
 
       - name: Create a GitHub Release
         uses: ncipollo/release-action@v1
@@ -51,4 +66,7 @@ jobs:
 
             # Change Detail
             ${{ steps.tag_version.outputs.changelog }}
+            
+            # Hashes
+            ${{ steps.output_test.read_hashes.hashes }}
           artifacts: "dist/**"
