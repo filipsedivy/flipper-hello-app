@@ -9,7 +9,7 @@ In the source code, CI/CD Workflows is integrated for automatic build and releas
 
 ![Application screen](asset/app_screen.png "Application screen")
 
-The application is automatically compiled for the following fimrware:
+The application is automatically compiled for the following firmware:
 - [Official](https://github.com/flipperdevices/flipperzero-firmware)
 - [Unleashed](https://github.com/DarkFlippers/unleashed-firmware)
 - [RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins)
