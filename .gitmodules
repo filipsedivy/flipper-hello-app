@@ -7,3 +7,6 @@
 [submodule ".rogue-master-firmware"]
 	path = .rogue-master-firmware
 	url = https://github.com/RogueMaster/flipperzero-firmware-wPlugins
+[submodule ".xtreme-firmware"]
+	path = .xtreme-firmware
+	url = https://github.com/ClaraCrazy/Flipper-Xtreme.git
