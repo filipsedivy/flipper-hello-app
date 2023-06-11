@@ -68,5 +68,5 @@ jobs:
             ${{ steps.tag_version.outputs.changelog }}
             
             # Hashes
-            ${{ steps.output_test.read_hashes.hashes }}
+            ${{ steps.read_hashes.outputs.hashes }}
           artifacts: "dist/**"
