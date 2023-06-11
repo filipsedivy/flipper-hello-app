@@ -32,3 +32,6 @@ do
       echo "| ${app_name} | $(firmware_link_by_name $firmware_name) | ${firmware_version} | ${app_hash} |" >> ${tools_root}/release.md
     fi
 done
+
+# Replace App Name
+sed -i -e "s|#APP_NAME#|$APPLICATION_NAME|g" $tools_root/release.md
