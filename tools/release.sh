@@ -5,6 +5,9 @@ tools_root=$(dirname $0)
 # Include functions
 source ${tools_root}/_functions.sh
 
+# Include configuration
+source ${tools_root}/_config.sh
+
 cp ${tools_root}/release_template.md ${tools_root}/release.md
 
 # Add New Lines
@@ -18,7 +21,7 @@ echo "# File Hashes" >> ${tools_root}/release.md
 echo "| File | Firmware name | Firmware version | md5 hash |" >> ${tools_root}/release.md
 echo "|------|---------------|------------------|----------|" >> ${tools_root}/release.md
 
-for file in "$tools_root/../temp/"*
+for file in "$tools_root/../build/info/"*
 do
     if [ -f "$file" ]; then
       app_name=$(sed -n '1p' "$file")

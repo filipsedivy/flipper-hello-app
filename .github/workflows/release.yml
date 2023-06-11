@@ -39,4 +39,4 @@ jobs:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: ${{ steps.tag_version.outputs.new_tag }}
           bodyFile: tools/release.md
-          artifacts: "dist/**"
+          artifacts: "build/dist/**"
