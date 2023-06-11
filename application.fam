@@ -7,4 +7,5 @@ App(
     stack_size=1 * 1024,
     fap_category="Example",
     fap_icon="flipper_hello_app_10x.png",
+    fap_icon_assets="images",
 )

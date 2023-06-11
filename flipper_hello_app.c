@@ -1,15 +1,18 @@
-#include <stdio.h>
 #include <furi.h>
 #include <gui/gui.h>
-#include <input/input.h>
-#include <notification/notification_messages.h>
+#include <assets_icons.h>
 
 static void hello_app_draw_callback(Canvas* canvas, void* ctx) {
     UNUSED(ctx);
 
     canvas_clear(canvas);
     canvas_set_font(canvas, FontPrimary);
-    canvas_draw_str(canvas, 2, 10, "Hello My Application");
+    canvas_draw_icon(canvas, 0, 8, &I_WarningDolphin_45x42);
+    canvas_set_font(canvas, FontSecondary);
+    canvas_draw_str(canvas, 51, 32, "Hello Application");
+    canvas_set_font(canvas, FontSecondary);
+    canvas_draw_str(canvas, 17, 60, "github.com/filipsedivy");
+    canvas_draw_frame(canvas, 0, 50, 128, 14);
 }
 
 static void hello_app_input_callback(InputEvent* input_event, void* ctx) {
