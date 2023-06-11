@@ -11,7 +11,6 @@ git submodule update --init --recursive
 # Set default build mode
 build_mode="standard"
 is_run=false
-firmware_path="f7-firmware-D"
 
 # Use getopts to parse command-line options and assign their values to variables
 while getopts "f:i" opt; do
@@ -32,6 +31,22 @@ while getopts "f:i" opt; do
       ;;
   esac
 done
+
+case $build_mode in
+  standard | unleashed)
+    firmware_path="f7-firmware-D"
+    ;;
+
+  xtreme | rogue-master)
+    firmware_path="f7-firmware-C"
+    ;;
+
+  *)
+    echo -n "Unknown firmware ${build_mode}"
+    exit 1
+    ;;
+esac
+
 
 if [[ "$build_mode" != "standard" || "$build_mode" != "unleashed" ]]; then
     firmware_path="f7-firmware-C"
