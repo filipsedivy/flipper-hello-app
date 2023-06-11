@@ -51,4 +51,8 @@ else
   ./fbt "fap_${application_name}"
 fi
 
-cp "build/f7-firmware-D/.extapps/${application_name}.fap" "../dist/${application_name}_${app_suffix}.fap"
+if [[ "$build_mode" == "standard" || "$build_mode" == "unleashed" ]]; then
+    cp "build/f7-firmware-D/.extapps/${application_name}.fap" "../dist/${application_name}_${app_suffix}.fap"
+else
+    cp "build/f7-firmware-C/.extapps/${application_name}.fap" "../dist/${application_name}_${app_suffix}.fap"
+fi
