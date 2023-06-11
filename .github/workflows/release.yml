@@ -20,6 +20,7 @@ jobs:
         run: |
           bash tools/build.sh -f unleashed
           bash tools/build.sh -f xtreme
+          bash tools/build.sh -f rogue-master
           bash tools/build.sh
 
       - name: Bump Version and Push Tag
