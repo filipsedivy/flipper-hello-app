@@ -47,11 +47,6 @@ case $build_mode in
     ;;
 esac
 
-
-if [[ "$build_mode" != "standard" || "$build_mode" != "unleashed" ]]; then
-    firmware_path="f7-firmware-C"
-fi
-
 cd "${repo_root}/.${build_mode}-firmware"
 
 api_version=$(awk -F',' 'NR == 2 {print $3}' firmware/targets/f7/api_symbols.csv);
