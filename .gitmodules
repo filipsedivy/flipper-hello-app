@@ -4,3 +4,6 @@
 [submodule ".unleashed-firmware"]
 	path = .unleashed-firmware
 	url = https://github.com/DarkFlippers/unleashed-firmware.git
+[submodule ".rogue-master-firmware"]
+	path = .rogue-master-firmware
+	url = https://github.com/RogueMaster/flipperzero-firmware-wPlugins
