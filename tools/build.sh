@@ -11,6 +11,7 @@ git submodule update --init --recursive
 # Set default build mode
 build_mode="standard"
 is_run=false
+firmware_path="f7-firmware-D"
 
 # Use getopts to parse command-line options and assign their values to variables
 while getopts "f:i" opt; do
@@ -32,6 +33,10 @@ while getopts "f:i" opt; do
   esac
 done
 
+if [[ "$build_mode" != "standard" || "$build_mode" != "unleashed" ]]; then
+    firmware_path="f7-firmware-C"
+fi
+
 cd "${repo_root}/.${build_mode}-firmware"
 
 api_version=$(awk -F',' 'NR == 2 {print $3}' firmware/targets/f7/api_symbols.csv);
@@ -41,7 +46,7 @@ app_suffix="${build_mode}_${api_version}"
 export FBT_NO_SYNC=1
 
 rm -rf applications_user/$application_name
-rm -rf build/f7-firmware-D/.extapps
+rm -rf build/${firmware_path}/.extapps
 
 cp -r ../$application_name/. applications_user/$application_name
 
@@ -51,8 +56,4 @@ else
   ./fbt "fap_${application_name}"
 fi
 
-if [[ "$build_mode" == "standard" || "$build_mode" == "unleashed" ]]; then
-    cp "build/f7-firmware-D/.extapps/${application_name}.fap" "../dist/${application_name}_${app_suffix}.fap"
-else
-    cp "build/f7-firmware-C/.extapps/${application_name}.fap" "../dist/${application_name}_${app_suffix}.fap"
-fi
+cp "build/${firmware_path}/.extapps/${application_name}.fap" "../dist/${application_name}_${app_suffix}.fap"
